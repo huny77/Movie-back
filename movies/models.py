@@ -20,6 +20,7 @@ class Movie(models.Model):
     movie_id = models.IntegerField()
     like_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movie', null=True)
     key = models.CharField(max_length=100)
+    backdrop_path = models.CharField(max_length=100)
 
 
 class Review(models.Model):
