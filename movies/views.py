@@ -36,11 +36,17 @@ def movie_detail_review_list_create(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     if request.method == 'GET':
         serializer_movie = MovieSerializer(movie)
-        review = get_list_or_404(Review, movie=movie)
-        serializer = ReviewListSerializer(review, many=True)
+        if movie.review_set.all():
+            review = get_list_or_404(Review, movie=movie)
+            serializer = ReviewListSerializer(review, many=True)
+            serializer = serializer.data
+        else:
+            serializer = []
+        is_liked = movie.like_user.filter(pk=request.user.pk).exists()
         data = {
             'movie': serializer_movie.data,
-            'review_list': serializer.data
+            'review_list': serializer,
+            'is_liked': is_liked
         }
         return Response(data)
         
