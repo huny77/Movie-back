@@ -81,7 +81,7 @@ def return_user_pk(request):
 def like_list(request):
     userpk = request.user  
     User = get_user_model()
-    user = get_object_or_404(User,pk=22)
+    user = get_object_or_404(User,pk=userpk.pk)
     likeMovie = user.like_movie.all()
     likeGenre = user.like_genre.all()
     like_movie_list = []
