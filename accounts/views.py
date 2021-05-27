@@ -81,13 +81,18 @@ def return_user_pk(request):
 def like_list(request):
     userpk = request.user  
     User = get_user_model()
-    user = get_object_or_404(User,pk=userpk.pk)
+    user = get_object_or_404(User,pk=22)
     likeMovie = user.like_movie.all()
+    likeGenre = user.like_genre.all()
     like_movie_list = []
     for movie in likeMovie:
         like_movie_list.append(movie.movie_id)
+    like_genre_list = []
+    for genre in likeGenre:
+        like_genre_list.append(genre.id)
     data = {
-        'like_movie_list': like_movie_list
+        'like_movie_list': like_movie_list,
+        'like_genre_list': like_genre_list
     }
     return Response(data, status = status.HTTP_200_OK)
 
