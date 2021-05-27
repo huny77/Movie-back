@@ -108,3 +108,16 @@ def like_post(request, post_pk):
         # post.like_user.remove(user)
         post.like_user.remove(request.user)
         return Response({'message': f'{ post.title } 글 좋아요 취소했습니다'}, status = status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def post_like_list(request, post_pk):
+    post = get_object_or_404(Post, pk=post_pk)
+    likeUser = post.like_user.all()
+    like_list = []
+    for like in likeUser:
+        like_list.append(like.id)
+    data = {
+        'like_list': like_list
+    }
+    return Response(data, status=status.HTTP_200_OK)
