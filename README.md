@@ -51,7 +51,7 @@
 
 ## 2. 개발 환경
 
-![image-20210527172147595](README.assets/image-20210527172147595.png)
+![image-20210527212908639](README.assets/image-20210527212908639.png)
 
 
 
